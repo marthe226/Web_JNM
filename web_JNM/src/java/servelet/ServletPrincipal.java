@@ -5,10 +5,8 @@
  */
 package servelet;
 
-import gestionnaire.gestionnaireConnect;
 import java.io.IOException;
-import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,11 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author deptinfo
  */
-@WebServlet(name = "ServletConnect", urlPatterns = {"/ServletConnect"})
-public class ServletConnect extends HttpServlet {
-
-    @EJB
-    private gestionnaireConnect gestionnaireConnect;
+@WebServlet(name = "ServletPrincipal", urlPatterns = {"/ServletPrincipal"})
+public class ServletPrincipal extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,28 +31,19 @@ public class ServletConnect extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String action = request.getParameter("action");
-        //HttpSession session = request.getSession(true);
-        String forwardTo = "";
-        String message = "";
-        
-        if("creerEtudiant".equals(action)){
-            
-            
-            if(request.getParameter("pass").equals(request.getParameter("confirmepass"))){
-            gestionnaireConnect.creerEtudiant(request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("email"), request.getParameter("pass"));
-            forwardTo = "index.jsp";      
-             message = "Etudiant crée !";
-            }
-            else{
-                 forwardTo = "connect.jsp";      
-                 message = "mot de passe non identique !";
-            }
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ServletPrincipal</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ServletPrincipal at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-        
-        RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);
-        dp.forward(request, response);
-       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

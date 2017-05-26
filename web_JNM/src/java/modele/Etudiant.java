@@ -19,6 +19,23 @@ import javax.persistence.Id;
 @Entity
 public class Etudiant implements Serializable {
 
+    public Etudiant() {
+    }
+
+    /**
+     *
+     * @param Nom
+     * @param Prenom
+     * @param email
+     * @param pass
+     */
+    public Etudiant(String Nom, String Prenom, String email, String pass) {
+        this.Nom = Nom;
+        this.Prenom = Prenom;
+        this.email = email;
+        this.pass = pass;
+    }
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

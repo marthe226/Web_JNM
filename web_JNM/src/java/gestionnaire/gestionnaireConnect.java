@@ -8,7 +8,7 @@ package gestionnaire;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import modele.Etudiant;
 
 /**
  *
@@ -23,4 +23,11 @@ public class gestionnaireConnect {
     // à partir du contenu de persistence.xml  
     @PersistenceContext  
     private EntityManager em;  
+    
+    public Etudiant creerEtudiant(String nom, String prenom, String email, String pass){
+        Etudiant etu = new Etudiant(nom, prenom, email, pass);
+        em.persist(etu);
+        return etu;
+        
+    }
 }

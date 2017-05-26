@@ -19,9 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author deptinfo
  */
-@WebServlet(name = "ServletConnect", urlPatterns = {"/ServletConnect"})
-public class ServletConnect extends HttpServlet {
-
+@WebServlet(name = "ServletEtudiant", urlPatterns = {"/ServletEtudiant"})
+public class ServletEtudiant extends HttpServlet {
     @EJB
     private gestionnaireConnect gestionnaireConnect;
 
@@ -57,7 +56,6 @@ public class ServletConnect extends HttpServlet {
         
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);
         dp.forward(request, response);
-       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
